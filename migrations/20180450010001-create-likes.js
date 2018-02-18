@@ -1,7 +1,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('likes', {
-    bookid: {
+    bookId: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       allowNull: false,

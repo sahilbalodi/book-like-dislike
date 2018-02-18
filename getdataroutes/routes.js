@@ -57,4 +57,18 @@ module.exports = [{
     });
   },
 },
+{
+  path: '/book/like/{id}',
+  method: 'GET',
+  handler: (request, response) => {
+    db.likes.upsert({
+      bookId: request.params.id,
+      like: true,
+    }).then((result) => {
+      if (result) {
+        response(`book liked with id ${request.params.id}`);
+      }
+    });
+  },
+},
 ];

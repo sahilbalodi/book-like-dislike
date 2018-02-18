@@ -34,7 +34,17 @@ describe('method POST /books', () => {
     supertest(server.listener)
       .post('/saveBooks')
       .then((response) => {
-        console.log(response.body);
+        expect(response.statusCode).toBe(200);
+        done();
+      })
+      .catch(console.log);
+  });
+});
+describe('method GET /book/like/id', () => {
+  test('should return a 200 OK statusCode', (done) => {
+    supertest(server.listener)
+      .get('/book/like/1')
+      .then((response) => {
         expect(response.statusCode).toBe(200);
         done();
       })
