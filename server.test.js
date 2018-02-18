@@ -39,8 +39,8 @@ describe('server getbookdata ', () => {
     done();
   });
   test('server responds to the get request with statusCode 200', (done) => {
-    if (!(verify('/Books') === null)) {
-      server.inject('/Books', (response) => {
+    if (!(verify('/books') === null)) {
+      server.inject('/books', (response) => {
         expect(response.statusCode).toBe(200);
         done();
       });
