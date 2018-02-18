@@ -51,3 +51,14 @@ describe('method GET /book/like/id', () => {
       .catch(console.log);
   });
 });
+describe('method GET /book/dislike/id', () => {
+  test('should return a 200 OK statusCode', (done) => {
+    supertest(server.listener)
+      .get('/book/dislike/1')
+      .then((response) => {
+        expect(response.statusCode).toBe(200);
+        done();
+      })
+      .catch(console.log);
+  });
+});
