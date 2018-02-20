@@ -1,5 +1,5 @@
 const Hapi = require('hapi');
-const allRoutes = require('./getdataroutes/routes.js');
+const allRoutes = require('./routes/routes.js');
 
 const server = new Hapi.Server();
 server.connection({

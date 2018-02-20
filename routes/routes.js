@@ -1,5 +1,5 @@
-const api1Data = require('./api1.js');
-const getRating = require('./api2.js');
+const api1Data = require('../apis/api1.js');
+const getRating = require('../apis/api2.js');
 const db = require('../models');
 
 let dataAboutAllBooks1 = [];
@@ -47,7 +47,6 @@ module.exports = [{
               bookid: contents[i].id,
               name: contents[i].Name,
               rating: contents[i].rating,
-            }).then(() => {
             });
           }
         }).then(() => {
