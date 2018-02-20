@@ -60,12 +60,16 @@ module.exports = [{
   path: '/book/like/{id}',
   method: 'GET',
   handler: (request, response) => {
-    db.likes.upsert({
-      bookId: request.params.id,
-      like: true,
-    }).then((result) => {
-      if (result) {
-        response(`book liked with id ${request.params.id}`);
+    db.booksdetails.findOne({ where: { bookid: request.params.id } }).then((book) => {
+      if (!(book === null)) {
+        db.likes.upsert({
+          bookId: request.params.id,
+          like: true,
+        }).then(() => {
+          response(`book liked with id ${request.params.id}`);
+        });
+      } else {
+        response('book id not present');
       }
     });
   },
@@ -74,12 +78,16 @@ module.exports = [{
   path: '/book/dislike/{id}',
   method: 'GET',
   handler: (request, response) => {
-    db.likes.upsert({
-      bookId: request.params.id,
-      like: false,
-    }).then((result) => {
-      if (!result) {
-        response(`book disliked with id ${request.params.id}`);
+    db.booksdetails.findOne({ where: { bookid: request.params.id } }).then((book) => {
+      if (!(book === null)) {
+        db.likes.upsert({
+          bookId: request.params.id,
+          like: false,
+        }).then(() => {
+          response(`book disliked with id ${request.params.id}`);
+        });
+      } else {
+        response('book id not present');
       }
     });
   },
