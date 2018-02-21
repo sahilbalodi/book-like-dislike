@@ -112,13 +112,13 @@ module.exports = [{
           });
         } else {
           tableresult.forEach((x) => {
+            x.like = null;
             likeresult.forEach((y) => {
               if (y.bookId === x.bookid) {
                 x.like = y.like;
-              } else {
-                x.like = null;
               }
             });
+
             sendBooks.push({
               name: x.name,
               rating: x.rating,
