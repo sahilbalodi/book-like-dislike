@@ -92,4 +92,45 @@ module.exports = [{
     });
   },
 },
+{
+  path: '/booksFromDatabase',
+  method: 'GET',
+  handler: (request, response) => {
+    const sendBooks = [];
+    db.booksdetails.findAll().then((tableresult) => {
+      db.likes.findAll().then((likeresult) => {
+        if (likeresult.length === 0) {
+          tableresult.forEach((x) => {
+            x.like = null;
+            sendBooks.push({
+              name: x.name,
+              rating: x.rating,
+              author: x.author,
+              like: x.like,
+              bookid: x.bookid,
+            });
+          });
+        } else {
+          tableresult.forEach((x) => {
+            likeresult.forEach((y) => {
+              if (y.bookId === x.bookid) {
+                x.like = y.like;
+              } else {
+                x.like = null;
+              }
+            });
+            sendBooks.push({
+              name: x.name,
+              rating: x.rating,
+              author: x.author,
+              like: x.like,
+              bookid: x.bookid,
+            });
+          });
+        }
+        response(sendBooks);
+      });
+    });
+  },
+},
 ];

@@ -19,6 +19,9 @@ module.exports = {
     rating: {
       type: Sequelize.DOUBLE,
     },
+    like:{
+      
+    }
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE,
