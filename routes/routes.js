@@ -128,7 +128,16 @@ module.exports = [{
             });
           });
         }
-        response(sendBooks);
+        const dataGroupedByAuthor = {};
+        sendBooks.forEach((details) => {
+          const authorName = details.author;
+          if (dataGroupedByAuthor[`${authorName}`] === undefined) {
+            dataGroupedByAuthor[`${authorName}`] = [details];
+          } else {
+            dataGroupedByAuthor[`${authorName}`].push(details);
+          }
+        });
+        response(dataGroupedByAuthor);
       });
     });
   },
